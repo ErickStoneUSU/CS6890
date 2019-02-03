@@ -1,0 +1,10 @@
+Do you always get the same policy? 
+No. The value iterator, though fitting roughly the
+same shape, will have different troughs than the
+policy iterator.  This can also change based on the
+number of trials.  This is because a differing number
+of trials may give the entity different goals.
+
+
+Do the two algorithms run about the same time?
+No. The policy learning algorithm is by far faster.
