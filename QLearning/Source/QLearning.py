@@ -1,7 +1,6 @@
 import datetime
 import random
 from collections import defaultdict
-from matplotlib import pyplot as plt
 import numpy as np
 
 
@@ -38,10 +37,10 @@ def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, suc
 
             # step 3
             s_next, reward, done, _ = env.step(a)
+            s_next = s_clo(s_next, bins)
             reward = r_clo(s, s_next, reward, done)
             ts += reward
             t += 1
-            s_next = tuple(np.round(s_next, bins))
 
             # step 4 & 5 :: Use Bellman equation from 6.5
             # big alpha if the reward is small
@@ -54,7 +53,7 @@ def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, suc
             if done:
                 break
 
-            if success > success_count and m % 20 == 0 and m > 4000:
+            if (success > success_count and m % 20 == 0 and m > 4000) or (m > 8000 and m % 40 == 0):
                 env.render()
 
         if m % 1000 == 0:
@@ -67,8 +66,4 @@ def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, suc
             print("success")
             success += 1
 
-    plt.plot(success_table, episode_table)
-    plt.ylabel('Episodes')
-    plt.xlabel('Values')
-    plt.draw()
-    plt.show()
+    return success_table, episode_table
