@@ -1,7 +1,17 @@
 import gym
 import numpy as np
-
 import QLearning
+
+
+def get_state(s, bins):
+    t = s
+    for i in range(len(s)):
+        if s[i] < 0:
+            s[i] = 0  # make the negative side worth nothing, so we only have values on one side to create spin
+    s = np.abs(np.sum(s[0:3])) / 4  # this gives a value between 0 and 1
+    s = (s + (1 - 1/(.0001 + t[4])) + (1 - 1/(.0001 + t[5])))/3
+    s = np.round(s, bins)  # this should give us 1 to .01
+    return s  # add value for speed
 
 
 def get_reward(s, s_n, r, done):
@@ -14,36 +24,17 @@ def get_reward(s, s_n, r, done):
     # 0 is either 180 or 0
     # one of these is down
     # i think down is 1,0 1,0
-    reward = 0
-    arm1cos = np.arccos(s[0])
-    arm1sin = np.arcsin(s[1])
-    arm2cos = np.arccos(s[2])
-    arm2sin = np.arcsin(s[3])
-    velocity1 = s[4]
-    velocity2 = s[5]
-
-    reward += np.sum(np.abs(s))
-    # give a reward if the two arms spin together
-    # if velocity1 * 1.05 < velocity2 < velocity1 * .95:
-    #     reward += 5
-    # else:
-    #     reward -= 3
-    # if arm1cos * 1.05 < arm2cos < arm1cos * .95:
-    #     reward += 5
-    # else:
-    #     reward -= 3
-    # if arm1sin * 1.05 < arm2sin < arm1sin * .95:
-    #     reward += 5
-    # else:
-    #     reward -= 3
-    # if velocity1 < s_n[4]:
-    #     reward += 20
-    return r
+    for i in range(len(s_n)):
+        if s_n[i] < 0:
+            s_n[i] = s_n[i] / 2  # make the negative side worth less then the positive side to create spin
+    s_n = np.abs(np.sum(s_n[0:3])) / 4  # this gives a value between 0 and 1
+    s = np.round(s_n, 2)  # this should give us 1 to .01
+    return s + r
 
 
 # env, num_ep, alpha, gamma,
 # min_ts, max_ts, bins, train_until,
 # success_count, r_clo
-QLearning.q_learning(gym.make("Acrobot-v1"), 50000, .01, 1,
-                     -200, 0, 3, 3000,
-                     1, get_reward)
+QLearning.q_learning(gym.make("Acrobot-v1"), 50000, .1, 1,
+                     -250, 0, 1, 3000,
+                     15, get_reward, get_state)

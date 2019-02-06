@@ -1,7 +1,7 @@
 import datetime
 import random
 from collections import defaultdict
-
+from matplotlib import pyplot as plt
 import numpy as np
 
 
@@ -11,19 +11,17 @@ import numpy as np
 # 3. Perform action
 # 4. Measure Reward
 # 5. Update Q Table
-def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, success_count, r_clo):
+def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, success_count, r_clo, s_clo):
     print('Beginning Learning' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     # Step 1
     q_table = defaultdict(lambda: np.zeros(env.action_space.n))
+    success_table = []
+    episode_table = []
     success = 0
-    best_ts = 100
 
     for m in range(num_ep):
         s = env.reset()
-        # get all values to a scale between 0 and 1
-        while np.max(s) > 1 or np.max(s) < -1:
-            s = s/2
-        s = tuple(np.round(s, bins))
+        s = s_clo(s, bins)
 
         if m % 100 == 0:
             print("|-- Episode {} starting.".format(m + 1) + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -56,16 +54,21 @@ def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, suc
             if done:
                 break
 
-            if success > success_count or m > 6000:
+            if success > success_count and m % 20 == 0 and m > 4000:
                 env.render()
 
-        if ts > -400:
-            print(ts)
-        if ts < best_ts:
-            best_ts = ts
-            print(best_ts)
+        if m % 1000 == 0:
+            print('Total Value: ' + str(ts))
+            print('QTable Length: ' + str(len(q_table)))
+            success_table.append(ts)
+            episode_table.append(m)
 
-        if min_ts < ts < max_ts and m % 100 == 0:
+        if min_ts < ts < max_ts and m % 1000 == 0:
             print("success")
             success += 1
 
+    plt.plot(success_table, episode_table)
+    plt.ylabel('Episodes')
+    plt.xlabel('Values')
+    plt.draw()
+    plt.show()
