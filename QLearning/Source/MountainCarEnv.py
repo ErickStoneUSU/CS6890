@@ -1,7 +1,16 @@
+import os
+import pickle
+from collections import defaultdict
 import gym
 import numpy as np
-from matplotlib import pyplot as plt
 import QLearning
+
+env = gym.make("MountainCar-v0")
+name = env.unwrapped.spec.id
+
+
+def dd():
+    return np.zeros(env.action_space.n)
 
 
 def get_state(s, bins):
@@ -15,14 +24,12 @@ def get_reward(s, s_n, r, done):
     return 1/r
 
 
-r_clo = get_reward
-success_table, episode_table = QLearning.q_learning(gym.make("MountainCar-v0"), 25000, .2, 1, -200, 0, 2, 2500, 15, r_clo, get_state)
+q_table = defaultdict(dd)
+if os.path.exists(name + "save.p"):
+    q_table = pickle.load(open(name + "save.p", "rb"))
 
-plt.plot(success_table, episode_table)
-plt.ylabel('Episodes')
-plt.xlabel('Values')
-plt.draw()
-plt.show()
-
-
-
+# QLearning.display(q_table, env, 300000, get_state, 1)
+# q_table, env, num_ep, alpha, gamma, bins, train_until, r_clo, s_clo
+q_table, success_table, episode_table = QLearning.q_learning(
+    q_table, env, 60000, .2, 1, 1, 10000, get_reward, get_state)
+pickle.dump(q_table, open(name + "save.p", "wb"))

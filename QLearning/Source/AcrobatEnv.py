@@ -1,7 +1,16 @@
+import os
+import pickle
+from collections import defaultdict
 import gym
 import numpy as np
 import QLearning
-from matplotlib import pyplot as plt
+
+env = gym.make("Acrobot-v1")
+name = env.unwrapped.spec.id
+
+
+def dd():
+    return np.zeros(env.action_space.n)
 
 
 def get_state(s, bins):
@@ -16,11 +25,8 @@ def get_state(s, bins):
 
 def get_reward(s, s_n, r, done):
     # finished episodes count against forcing progression
-    # big rewards for being above the half way mark
-    if done and s_n < .5:
-        return -10
-    elif s_n > .5:
-        return 10
+    if done:
+        return -1
     # down is pi/2 this means that up which is desired is 3 pi/2
     # increase if clock wise of previous state
     # [cos(theta1) sin(theta1) cos(theta2) sin(theta2) thetaDot1 thetaDot2]
@@ -34,12 +40,14 @@ def get_reward(s, s_n, r, done):
 # env, num_ep, alpha, gamma,
 # min_ts, max_ts, bins, train_until,
 # success_count, r_clo
-success_table, episode_table = QLearning.q_learning(gym.make("Acrobot-v1"), 50000, .1, 1,
-                     0, 2000, 1, 6000,
-                     15, get_reward, get_state)
 
-plt.plot(success_table, episode_table)
-plt.ylabel('Episodes')
-plt.xlabel('Values')
-plt.draw()
-plt.show()
+q_table = defaultdict(dd)
+if os.path.exists(name + "save.p"):
+    q_table = pickle.load(open(name + "save.p", "rb"))
+
+QLearning.display(q_table, env, 300000, get_state, 4)
+# q_table, env, num_ep, alpha, gamma, bins, train_until, r_clo, s_clo
+q_table, success_table, episode_table = QLearning.q_learning(
+    q_table, env, 50000, .1, 1, 4, 6000, get_reward, get_state)
+
+pickle.dump(q_table, open(name + "save.p", "wb"))

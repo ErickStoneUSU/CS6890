@@ -1,7 +1,20 @@
 import datetime
 import random
-from collections import defaultdict
 import numpy as np
+
+
+def display(q_table, env, num_ep, s_clo, bins):
+    for m in range(num_ep):
+        s = env.reset()
+        s = s_clo(s, bins)
+        while True:
+            a = np.argmax(q_table[s])
+            s_next, reward, done, _ = env.step(a)
+            s_next = s_clo(s_next, bins)
+            s = s_next
+            env.render()
+            if done:
+                break
 
 
 # STEPS
@@ -10,10 +23,9 @@ import numpy as np
 # 3. Perform action
 # 4. Measure Reward
 # 5. Update Q Table
-def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, success_count, r_clo, s_clo):
-    print('Beginning Learning' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+def q_learning(q_table, env, num_ep, alpha, gamma, bins, train_until, r_clo, s_clo):
     # Step 1
-    q_table = defaultdict(lambda: np.zeros(env.action_space.n))
+    print('Beginning Learning' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     success_table = []
     episode_table = []
     success = 0
@@ -21,9 +33,6 @@ def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, suc
     for m in range(num_ep):
         s = env.reset()
         s = s_clo(s, bins)
-
-        if m % 100 == 0:
-            print("|-- Episode {} starting.".format(m + 1) + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         t = 0
         ts = 0
         ri = random.randint(0, 10) < 2
@@ -53,17 +62,9 @@ def q_learning(env, num_ep, alpha, gamma, min_ts, max_ts, bins, train_until, suc
             if done:
                 break
 
-            if (success > success_count and m % 20 == 0 and m > 4000) or (m > 8000 and m % 40 == 0):
-                env.render()
-
         if m % 1000 == 0:
-            print('Total Value: ' + str(ts))
-            print('QTable Length: ' + str(len(q_table)))
-            success_table.append(ts)
-            episode_table.append(m)
+            print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + 'Episode: ' + str(m))
+            print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + 'Total Value: ' + str(ts))
+            print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + 'QTable Length: ' + str(len(q_table)))
 
-        if min_ts < ts < max_ts and m % 1000 == 0:
-            print("success")
-            success += 1
-
-    return success_table, episode_table
+    return q_table, success_table, episode_table
