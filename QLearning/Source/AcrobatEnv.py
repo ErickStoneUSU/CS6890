@@ -19,8 +19,9 @@ def get_state(s, bins):
         if s[i] < 0:
             s[i] = 0  # make the negative side worth nothing, so we only have values on one side to create spin
     s = np.abs(np.sum(s[0:3])) / 4  # this gives a value between 0 and 1
+    s = s + t[4] + t[5]
     s = np.round(s, bins)  # this should give us 1 to .01
-    return s + t[4] + t[5]  # add value for speed
+    return s  # add value for speed
 
 
 def get_reward(s, s_n, r, done):
