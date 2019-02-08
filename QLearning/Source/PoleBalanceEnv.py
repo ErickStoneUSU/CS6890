@@ -29,8 +29,8 @@ if os.path.exists(name + "save.p"):
     q_table = pickle.load(open(name + "save.p", "rb"))
 
 
-# QLearning.display(q_table, env, 300000, get_state, 3)
+QLearning.display(q_table, env, 300000, get_state, 3)
 # q_table, env, num_ep, alpha, gamma, bins, train_until, r_clo, s_clo
 q_table, success_table, episode_table = QLearning.q_learning(
-    q_table, env, 200000, .01, .999, 3, 10000, get_reward, get_state)
+    q_table, env, 200000, .1, 1, 6, 3000, get_reward, get_state)
 pickle.dump(q_table, open(name + "save.p", "wb"))
