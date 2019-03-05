@@ -3,7 +3,7 @@ import pickle
 from collections import defaultdict
 import gym
 import numpy as np
-import QLearning
+from old import QLearning
 
 env = gym.make("CartPole-v0")
 name = env.unwrapped.spec.id

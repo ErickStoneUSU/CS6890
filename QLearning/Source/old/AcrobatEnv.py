@@ -3,7 +3,7 @@ import pickle
 from collections import defaultdict
 import gym
 import numpy as np
-import QLearning
+from old import QLearning
 
 env = gym.make("Acrobot-v1")
 name = env.unwrapped.spec.id
