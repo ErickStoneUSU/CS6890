@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d0df806e-14dd-4c74-b437-43e9def28fbc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Source/final_project/ParticleEnv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/ParticleEnv.py" afterDir="false" />
-    </list>
+    <list default="true" id="d0df806e-14dd-4c74-b437-43e9def28fbc" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -446,15 +444,16 @@
       <workItem from="1549472928362" duration="1203000" />
       <workItem from="1549478189599" duration="17973000" />
       <workItem from="1549572835048" duration="11865000" />
-      <workItem from="1551397356389" duration="29567000" />
+      <workItem from="1551397356389" duration="30018000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127842000" />
+    <option name="totallyTimeSpent" value="128293000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1927" y="1356" width="1550" height="934" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26308724" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
