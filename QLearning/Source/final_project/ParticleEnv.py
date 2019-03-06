@@ -5,6 +5,17 @@ import make_env
 import numpy as np
 import QLearningParticleAgent as QLearning
 
+# SOURCES:
+
+# Gym Environment:
+# https://github.com/openai/multiagent-particle-envs
+
+# Runner with value iteration agents
+# https://github.com/openai/maddpg
+
+# Original Paper
+# https://arxiv.org/pdf/1706.02275.pdf
+
 env = make_env.make_env('simple_world_comm')
 
 
