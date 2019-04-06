@@ -7,6 +7,7 @@ import pickle
 import maddpg.common.tf_util as U
 from maddpg.trainer.maddpg import MADDPGAgentTrainer
 import tensorflow.contrib.layers as layers
+from experiments.GLOBALS import global_env
 
 
 def parse_args():
@@ -25,11 +26,11 @@ def parse_args():
     parser.add_argument("--num-units", type=int, default=64, help="number of units in the mlp")
     # Checkpointing
     parser.add_argument("--exp-name", type=str, default=None, help="name of the experiment")
-    parser.add_argument("--save-dir", type=str, default="/tmp/policy/",
+    parser.add_argument("--save-dir", type=str, default='/pp' + str(global_env.predator) + str(global_env.prey) + '/',
                         help="directory in which training state and model should be saved")
     parser.add_argument("--save-rate", type=int, default=1000,
                         help="save model once every time this many episodes are completed")
-    parser.add_argument("--load-dir", type=str, default="",
+    parser.add_argument("--load-dir", type=str, default='/pp' + str(global_env.predator) + str(global_env.prey) + '/',
                         help="directory in which training state and model are loaded")
     # Evaluation
     parser.add_argument("--restore", action="store_true", default=False)
@@ -103,7 +104,8 @@ def train(arglist):
         if arglist.display or arglist.restore or arglist.benchmark:
             print('Loading previous state...')
             U.load_state(arglist.load_dir)
-
+        predator_rewards = 0.0
+        prey_rewards = 0.0
         episode_rewards = [0.0]  # sum of rewards for all agents
         agent_rewards = [[0.0] for _ in range(env.n)]  # individual agent reward
         final_ep_rewards = []  # sum of rewards for training curve
@@ -132,6 +134,10 @@ def train(arglist):
             for i, rew in enumerate(rew_n):
                 episode_rewards[-1] += rew
                 agent_rewards[i][-1] += rew
+                if i < 2:
+                    predator_rewards += rew / 1000.0
+                else:
+                    prey_rewards += rew / 1000.0
 
             if done or terminal:
                 obs_n = env.reset()
@@ -160,7 +166,6 @@ def train(arglist):
             if arglist.display:
                 time.sleep(0.1)
                 env.render()
-                continue
 
             # update all trainers, if not in display or benchmark mode
             loss = None
@@ -172,6 +177,17 @@ def train(arglist):
             # save model, display training output
             if terminal and (len(episode_rewards) % arglist.save_rate == 0):
                 U.save_state(arglist.save_dir, saver=saver)
+                with open('pp' + str(global_env.predator) + str(global_env.prey) + '.txt', 'a') as f:
+                    f.write(str(len(episode_rewards)) + ',' +
+                            str(np.mean(episode_rewards[-arglist.save_rate:])) + ',' +
+                            str(predator_rewards) + ',' +
+                            str(prey_rewards) + ',' +
+                            str(round(time.time() - t_start, 3)) + ','
+                            )
+
+                predator_rewards = 0.0
+                prey_rewards = 0.0
+
                 # print statement depends on whether or not there are adversaries
                 if num_adversaries == 0:
                     print("steps: {}, episodes: {}, mean episode reward: {}, time: {}".format(
@@ -190,9 +206,11 @@ def train(arglist):
             # saves final episode reward for plotting training curve later
             if len(episode_rewards) > arglist.num_episodes:
                 rew_file_name = arglist.plots_dir + arglist.exp_name + '_rewards.pkl'
+                print(rew_file_name)
                 with open(rew_file_name, 'wb') as fp:
                     pickle.dump(final_ep_rewards, fp)
                 agrew_file_name = arglist.plots_dir + arglist.exp_name + '_agrewards.pkl'
+                print(agrew_file_name)
                 with open(agrew_file_name, 'wb') as fp:
                     pickle.dump(final_ep_ag_rewards, fp)
                 print('...Finished total of {} episodes.'.format(len(episode_rewards)))

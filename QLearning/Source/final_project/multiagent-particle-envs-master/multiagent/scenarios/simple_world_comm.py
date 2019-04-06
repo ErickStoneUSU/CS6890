@@ -1,6 +1,7 @@
 import numpy as np
 from multiagent.core import World, Agent, Landmark
 from multiagent.scenario import BaseScenario
+from experiments.GLOBALS import global_env
 
 
 class Scenario(BaseScenario):
@@ -8,9 +9,9 @@ class Scenario(BaseScenario):
         world = World()
         # set any world properties first
         world.dim_c = 4
-        #world.damping = 1
-        num_good_agents = 2
-        num_adversaries = 4
+        # world.damping = 1
+        num_adversaries = global_env.predator
+        num_good_agents = global_env.prey
         num_agents = num_adversaries + num_good_agents
         num_landmarks = 1
         num_food = 2
@@ -25,7 +26,7 @@ class Scenario(BaseScenario):
             agent.adversary = True if i < num_adversaries else False
             agent.size = 0.075 if agent.adversary else 0.045
             agent.accel = 3.0 if agent.adversary else 4.0
-            #agent.accel = 20.0 if agent.adversary else 25.0
+            # agent.accel = 20.0 if agent.adversary else 25.0
             agent.max_speed = 1.0 if agent.adversary else 1.3
         # add landmarks
         world.landmarks = [Landmark() for i in range(num_landmarks)]
@@ -196,30 +197,6 @@ class Scenario(BaseScenario):
                     if self.is_collision(ag, adv):
                         rew += 5
         return rew
-
-
-    def observation2(self, agent, world):
-        # get positions of all entities in this agent's reference frame
-        entity_pos = []
-        for entity in world.landmarks:
-            if not entity.boundary:
-                entity_pos.append(entity.state.p_pos - agent.state.p_pos)
-
-        food_pos = []
-        for entity in world.food:
-            if not entity.boundary:
-                food_pos.append(entity.state.p_pos - agent.state.p_pos)
-        # communication of all other agents
-        comm = []
-        other_pos = []
-        other_vel = []
-        for other in world.agents:
-            if other is agent: continue
-            comm.append(other.state.c)
-            other_pos.append(other.state.p_pos - agent.state.p_pos)
-            if not other.adversary:
-                other_vel.append(other.state.p_vel)
-        return np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel)
 
     def observation(self, agent, world):
         # get positions of all entities in this agent's reference frame
