@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py" line="214" />
+    <bookmark url="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py" line="197" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0df806e-14dd-4c74-b437-43e9def28fbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/State.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/images/individual_average_reward.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/images/individual_predator_reward.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/images/individual_prey_reward.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/trainer/maddpg.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/trainer/maddpg.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_adversary.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_crypto.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_push.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_reference.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_speaker_listener.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_spread.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_tag.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/old/cliff_walking.py" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,7 +33,7 @@
     <SUITE FILE_PATH="coverage/QLearning$cliff_walking.coverage" NAME="cliff_walking Coverage Results" MODIFIED="1549130490124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source" />
     <SUITE FILE_PATH="coverage/QLearning$__init____1_.coverage" NAME="__init__ (1) Coverage Results" MODIFIED="1551411593907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent" />
     <SUITE FILE_PATH="coverage/QLearning$display.coverage" NAME="display Coverage Results" MODIFIED="1553060952243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments" />
-    <SUITE FILE_PATH="coverage/QLearning$train.coverage" NAME="train Coverage Results" MODIFIED="1554526756478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments" />
+    <SUITE FILE_PATH="coverage/QLearning$train.coverage" NAME="train Coverage Results" MODIFIED="1554612854156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments" />
     <SUITE FILE_PATH="coverage/QLearning$simple.coverage" NAME="simple Coverage Results" MODIFIED="1551411243545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios" />
     <SUITE FILE_PATH="coverage/QLearning$QLearning.coverage" NAME="QLearning Coverage Results" MODIFIED="1549351098352" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source" />
     <SUITE FILE_PATH="coverage/QLearning$ParticleEnv.coverage" NAME="ParticleEnv Coverage Results" MODIFIED="1551550692922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Source/final_project" />
@@ -51,8 +43,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
+            <state relative-caret-position="270">
+              <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -63,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/trainer/maddpg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3410">
-              <caret line="155" column="22" selection-start-line="155" selection-start-column="22" selection-end-line="155" selection-end-column="22" />
+            <state relative-caret-position="370">
+              <caret line="151" selection-start-line="151" selection-end-line="151" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -72,20 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/common/tf_util.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="231" selection-start-line="231" selection-end-line="231" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="329" column="32" lean-forward="true" selection-start-line="329" selection-start-column="32" selection-end-line="329" selection-end-column="32" />
+            <state relative-caret-position="679">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -94,22 +77,64 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py">
+        <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/einsumfunc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="220" selection-start-line="220" selection-end-line="220" />
+            <state relative-caret-position="378">
+              <caret line="1227" selection-start-line="1227" selection-end-line="1227" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/make_env.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="768">
+              <caret line="35" column="27" lean-forward="true" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#10#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.IntelliJIdea2018.3/system/python_stubs/-1120166012/numpy/core/umath.py">
+        <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/common/tf_util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="3251" selection-start-line="3251" selection-end-line="3251" />
+            <state relative-caret-position="370">
+              <caret line="284" selection-start-line="284" selection-end-line="284" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="228" column="41" lean-forward="true" selection-start-line="228" selection-start-column="41" selection-end-line="228" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#1303#1479#0" />
+                <element signature="e#1601#1775#0" />
+                <element signature="e#1906#2081#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -117,19 +142,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="26" column="10" selection-start-line="26" selection-end-line="26" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="224" column="20" lean-forward="true" selection-start-line="224" selection-start-column="20" selection-end-line="224" selection-end-column="20" />
+            <state relative-caret-position="770">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,10 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>steps</find>
-      <find>pickle</find>
-      <find>write</find>
-      <find>copy</find>
       <find>display</find>
       <find>save_dir</find>
       <find>mlp_model</find>
@@ -172,10 +184,14 @@
       <find>state[</find>
       <find>state_list</find>
       <find>state.append</find>
-      <find>append</find>
       <find>g_vars</find>
       <find>global_env.state</find>
       <find>logad</find>
+      <find>append</find>
+      <find>action_space</find>
+      <find>dim_c</find>
+      <find>agent</find>
+      <find>obs</find>
     </findStrings>
     <replaceStrings>
       <replace>[s_next][i]</replace>
@@ -215,19 +231,20 @@
         <option value="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/pp105.txt" />
         <option value="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_crypto.py" />
         <option value="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/State.py" />
-        <option value="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py" />
         <option value="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py" />
-        <option value="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py" />
         <option value="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/train.py" />
+        <option value="$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/trainer/maddpg.py" />
+        <option value="$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py" />
         <option value="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py" />
+        <option value="$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1932" />
-    <option name="y" value="1365" />
-    <option name="width" value="1939" />
-    <option name="height" value="1169" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1458" />
+    <option name="height" value="2528" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -253,53 +270,6 @@
               <item name="Source" type="462c0819:PsiDirectoryNode" />
               <item name="final_project" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="QLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-              <item name="final_project" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg-master" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-              <item name="final_project" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg-master" type="462c0819:PsiDirectoryNode" />
-              <item name="experiments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-              <item name="final_project" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg-master" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-              <item name="final_project" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg-master" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-              <item name="final_project" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg-master" type="462c0819:PsiDirectoryNode" />
-              <item name="maddpg" type="462c0819:PsiDirectoryNode" />
-              <item name="trainer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QLearning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QLearning" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-              <item name="old" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -321,8 +291,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\erick\Projects\School\CS6890\QLearning\Source\final_project\maddpg-master\experiments\data" />
       <recent name="C:\Users\erick\Projects\School\CS6890\QLearning\Source\final_project\maddpg-master\experiments\images" />
+      <recent name="C:\Users\erick\Projects\School\CS6890\QLearning\Source\final_project\maddpg-master\experiments\data" />
       <recent name="C:\Users\erick\Projects\School\CS6890\QLearning\Source\old" />
       <recent name="C:\Users\erick\Projects\School\CS6890\QLearning\Source\final_project\multiagent-particle-envs-master\bin" />
       <recent name="C:\Users\erick\Projects\School\CS6890\QLearning\Source\final_project\multiagent-particle-envs-master" />
@@ -550,18 +520,17 @@
       <workItem from="1552752245017" duration="41791000" />
       <workItem from="1553526012938" duration="1698000" />
       <workItem from="1553710247949" duration="661000" />
-      <workItem from="1553729624092" duration="27582000" />
+      <workItem from="1553729624092" duration="53703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201671000" />
+    <option name="totallyTimeSpent" value="227792000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1929" y="1365" width="1551" height="935" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1166" height="2022" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27900738" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3761302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -569,7 +538,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32991013" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932885" weight="0.32991013" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.3794872" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.37921798" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32991013" />
@@ -579,14 +548,14 @@
       <window_info anchor="bottom" id="RNConsole" order="10" weight="0.32991013" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.44415918" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50067115" side_tool="true" weight="0.32991013" />
-      <window_info anchor="bottom" id="Dilbert" order="13" weight="0.45314506" />
+      <window_info anchor="bottom" id="Dilbert" order="13" weight="0.45313337" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info anchor="right" id="SciView" order="6" visible="true" weight="0.021462105" />
+      <window_info anchor="right" id="SciView" order="6" weight="0.36618444" />
       <window_info anchor="right" id="Database" order="7" />
     </layout>
     <layout-to-restore>
@@ -635,9 +604,29 @@
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py</url>
-          <line>220</line>
-          <option name="timeStamp" value="49" />
+          <url>file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/common/tf_util.py</url>
+          <line>327</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/train.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py</url>
+          <line>247</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py</url>
+          <line>242</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -652,102 +641,131 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>plt.plot([1,2,3,4])
-plt.ylabel('some numbers')
-plt.show()</expression-string>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos] +
+                              other_pos +
+                              other_vel +
+                              other_type +
+                              in_forest +
+                              comm)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos] +
+                              other_pos +
+                              other_vel
+               )</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos] +
+                              other_pos +
+                              [other_vel]
+               )</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+               [agent.state.p_pos] +
+               [other_pos] +
+               [other_vel] +
+               [other_type] +
+               [in_forest] +
+               [comm])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>other_vel</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos] +
+                              other_pos
+               )</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos]
+               )</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos] +
+                              other_pos +
+                              other_vel +
+                              other_type
+               )</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>other_pos</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>len(other_pos)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>global_env.k</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>other_type</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>other_vel</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>[agent.state.p_pos]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>[agent.state.p_vel]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>global_env</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>state</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>np.logaddexp(0, -(dist - dist_min) / k) * k</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>k</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>dist_min</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>dist</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>global_env.get_state()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>entity_b</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>entity_a</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>state.state</expression-string>
+        <expression-string>dist.sort(key=dist_sort)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/gym/core.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="172" column="8" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/gym/wrappers/time_limit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/fromnumeric.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_PLUGINS_DIR$/python/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files/Python36/Lib/site-packages/pyglet/gl/lib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/mountainCar-1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1599">
@@ -808,15 +826,6 @@ plt.show()</expression-string>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/ParticleEnv.py" />
-    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_spread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -950,13 +959,6 @@ plt.show()</expression-string>
     <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/data/pp105.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/common/tf_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="231" selection-start-line="231" selection-end-line="231" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-665">
@@ -974,13 +976,6 @@ plt.show()</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/make_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="706">
-          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/State.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -988,32 +983,14 @@ plt.show()</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/trainer/maddpg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3410">
-          <caret line="155" column="22" selection-start-line="155" selection-start-column="22" selection-end-line="155" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/images/individual_average_reward.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/images/individual_predator_reward.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="26" column="10" selection-start-line="26" selection-end-line="26" selection-end-column="10" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/images/individual_prey_reward.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$USER_HOME$/.IntelliJIdea2018.3/system/python_stubs/-1120166012/numpy/core/umath.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1022,32 +999,100 @@ plt.show()</expression-string>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py">
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/tensorflow/python/client/session.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="220" selection-start-line="220" selection-end-line="220" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1070">
+          <caret line="1127" selection-start-line="1127" selection-end-line="1127" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py">
+    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/common/tf_util.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="329" column="32" lean-forward="true" selection-start-line="329" selection-start-column="32" selection-end-line="329" selection-end-column="32" />
+        <state relative-caret-position="370">
+          <caret line="284" selection-start-line="284" selection-end-line="284" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py">
+    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/make_env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="224" column="20" lean-forward="true" selection-start-line="224" selection-start-column="20" selection-end-line="224" selection-end-column="20" />
+        <state relative-caret-position="768">
+          <caret line="35" column="27" lean-forward="true" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/maddpg/trainer/maddpg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="151" selection-start-line="151" selection-end-line="151" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Python36/Lib/site-packages/numpy/core/einsumfunc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="1227" selection-start-line="1227" selection-end-line="1227" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/maddpg-master/experiments/GLOBALS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/scenarios/simple_world_comm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="228" column="41" lean-forward="true" selection-start-line="228" selection-start-column="41" selection-end-line="228" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#1303#1479#0" />
+            <element signature="e#1601#1775#0" />
+            <element signature="e#1906#2081#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/final_project/multiagent-particle-envs-master/multiagent/environment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

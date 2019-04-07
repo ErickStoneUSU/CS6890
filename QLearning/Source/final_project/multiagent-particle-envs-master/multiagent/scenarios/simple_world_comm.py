@@ -52,7 +52,7 @@ class Scenario(BaseScenario):
             landmark.boundary = False
         world.landmarks += world.food
         world.landmarks += world.forests
-        #world.landmarks += self.set_boundaries(world)  # world boundaries now penalized with negative reward
+        # world.landmarks += self.set_boundaries(world)  # world boundaries now penalized with negative reward
         # make initial conditions
         self.reset_world(world)
         return world
@@ -84,7 +84,6 @@ class Scenario(BaseScenario):
             l.state.p_vel = np.zeros(world.dim_p)
 
         return boundary_list
-
 
     def reset_world(self, world):
         # random properties for agents
@@ -123,13 +122,11 @@ class Scenario(BaseScenario):
         else:
             return 0
 
-
     def is_collision(self, agent1, agent2):
         delta_pos = agent1.state.p_pos - agent2.state.p_pos
         dist = np.sqrt(np.sum(np.square(delta_pos)))
         dist_min = agent1.size + agent2.size
         return True if dist < dist_min else False
-
 
     # return all agents that are not adversaries
     def good_agents(self, world):
@@ -139,19 +136,18 @@ class Scenario(BaseScenario):
     def adversaries(self, world):
         return [agent for agent in world.agents if agent.adversary]
 
-
     def reward(self, agent, world):
         # Agents are rewarded based on minimum agent distance to each landmark
-        #boundary_reward = -10 if self.outside_boundary(agent) else 0
+        # boundary_reward = -10 if self.outside_boundary(agent) else 0
         main_reward = self.adversary_reward(agent, world) if agent.adversary else self.agent_reward(agent, world)
         return main_reward
 
     def outside_boundary(self, agent):
-        if agent.state.p_pos[0] > 1 or agent.state.p_pos[0] < -1 or agent.state.p_pos[1] > 1 or agent.state.p_pos[1] < -1:
+        if agent.state.p_pos[0] > 1 or agent.state.p_pos[0] < -1 or agent.state.p_pos[1] > 1 or agent.state.p_pos[
+            1] < -1:
             return True
         else:
             return False
-
 
     def agent_reward(self, agent, world):
         # Agents are rewarded based on minimum agent distance to each landmark
@@ -165,6 +161,7 @@ class Scenario(BaseScenario):
             for a in adversaries:
                 if self.is_collision(a, agent):
                     rew -= 5
+
         def bound(x):
             if x < 0.9:
                 return 0
@@ -199,68 +196,59 @@ class Scenario(BaseScenario):
         return rew
 
     def observation(self, agent, world):
-        # get positions of all entities in this agent's reference frame
+        other_type = []
         entity_pos = []
+        other_pos = []
+        other_vel = []
+        food_pos = []
+        in_forest = [np.array([-1]), np.array([-1])]
+        comm = [world.agents[0].state.c]
+
+        # set up knn
+        if global_env.agents != world.agents:
+            global_env.agents = world.agents
+            global_env.calculate_knn()
+
+        # setup landmark distance and collisions
         for entity in world.landmarks:
             if not entity.boundary:
                 entity_pos.append(entity.state.p_pos - agent.state.p_pos)
 
-        in_forest = [np.array([-1]), np.array([-1])]
-        inf1 = False
-        inf2 = False
         if self.is_collision(agent, world.forests[0]):
             in_forest[0] = np.array([1])
-            inf1= True
+
         if self.is_collision(agent, world.forests[1]):
             in_forest[1] = np.array([1])
-            inf2 = True
 
-        food_pos = []
+        # setup food distance and collisions
         for entity in world.food:
             if not entity.boundary:
                 food_pos.append(entity.state.p_pos - agent.state.p_pos)
-        # communication of all other agents
-        comm = []
-        other_pos = []
-        other_vel = []
-        for other in world.agents:
-            if other is agent: continue
-            comm.append(other.state.c)
-            oth_f1 = self.is_collision(other, world.forests[0])
-            oth_f2 = self.is_collision(other, world.forests[1])
-            if (inf1 and oth_f1) or (inf2 and oth_f2) or (not inf1 and not oth_f1 and not inf2 and not oth_f2) or agent.leader:  #without forest vis
-                other_pos.append(other.state.p_pos - agent.state.p_pos)
-                if not other.adversary:
-                    other_vel.append(other.state.p_vel)
+
+        # set up knn here
+        # entity is distance to landmarks
+        # other_pos is other guys pos
+        # get agent number
+        # figure out what to do with entity
+        agent_number = int(str.split(agent.name, ' ')[1])
+        for i in global_env.knn[agent_number]:
+            other = world.agents[i]
+            other_pos.append(other.state.p_pos - agent.state.p_pos)
+            other_vel.append(other.state.p_vel - agent.state.p_vel)
+            if agent.adversary:
+                other_type.append(np.array([1]))
             else:
-                other_pos.append([0, 0])
-                if not other.adversary:
-                    other_vel.append([0, 0])
+                other_type.append(np.array([0]))
 
-        # to tell the pred when the prey are in the forest
-        prey_forest = []
-        ga = self.good_agents(world)
-        for a in ga:
-            if any([self.is_collision(a, f) for f in world.forests]):
-                prey_forest.append(np.array([1]))
-            else:
-                prey_forest.append(np.array([-1]))
-        # to tell leader when pred are in forest
-        prey_forest_lead = []
-        for f in world.forests:
-            if any([self.is_collision(a, f) for a in ga]):
-                prey_forest_lead.append(np.array([1]))
-            else:
-                prey_forest_lead.append(np.array([-1]))
+            if len(other_pos) == global_env.k:
+                break
 
-        comm = [world.agents[0].state.c]
-
-        if agent.adversary and not agent.leader:
-            return np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel + in_forest + comm)
-        if agent.leader:
-            return np.concatenate(
-                [agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel + in_forest + comm)
-        else:
-            return np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + in_forest + other_vel)
-
-
+        if not agent.adversary:
+            comm = [np.array([0.0, 0.0, 0.0, 0.0])]
+        return np.concatenate([agent.state.p_vel] +
+                              [agent.state.p_pos] +
+                              other_pos +
+                              other_vel +
+                              other_type +
+                              in_forest +
+                              comm)

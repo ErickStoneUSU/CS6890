@@ -34,22 +34,22 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
         obs_ph_n = make_obs_ph_n
         act_ph_n = [act_pdtype_n[i].sample_placeholder([None], name="action"+str(i)) for i in range(len(act_space_n))]
 
-        p_input = obs_ph_n[p_index]
+        p_input = obs_ph_n[0]
 
-        p = p_func(p_input, int(act_pdtype_n[p_index].param_shape()[0]), scope="p_func", num_units=num_units)
+        p = p_func(p_input, int(act_pdtype_n[0].param_shape()[0]), scope="p_func", num_units=num_units)
         p_func_vars = U.scope_vars(U.absolute_scope_name("p_func"))
 
         # wrap parameters in distribution
-        act_pd = act_pdtype_n[p_index].pdfromflat(p)
+        act_pd = act_pdtype_n[0].pdfromflat(p)
 
         act_sample = act_pd.sample()
         p_reg = tf.reduce_mean(tf.square(act_pd.flatparam()))
 
         act_input_n = act_ph_n + []
-        act_input_n[p_index] = act_pd.sample()
+        act_input_n[0] = act_pd.sample()
         q_input = tf.concat(obs_ph_n + act_input_n, 1)
         if local_q_func:
-            q_input = tf.concat([obs_ph_n[p_index], act_input_n[p_index]], 1)
+            q_input = tf.concat([obs_ph_n[0], act_input_n[0]], 1)
         q = q_func(q_input, 1, scope="q_func", reuse=True, num_units=num_units)[:,0]
         pg_loss = -tf.reduce_mean(q)
 
@@ -59,16 +59,16 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
 
         # Create callable functions
         train = U.function(inputs=obs_ph_n + act_ph_n, outputs=loss, updates=[optimize_expr])
-        act = U.function(inputs=[obs_ph_n[p_index]], outputs=act_sample)
-        p_values = U.function([obs_ph_n[p_index]], p)
+        act = U.function(inputs=[obs_ph_n[0]], outputs=act_sample)
+        p_values = U.function([obs_ph_n[0]], p)
 
         # target network
-        target_p = p_func(p_input, int(act_pdtype_n[p_index].param_shape()[0]), scope="target_p_func", num_units=num_units)
+        target_p = p_func(p_input, int(act_pdtype_n[0].param_shape()[0]), scope="target_p_func", num_units=num_units)
         target_p_func_vars = U.scope_vars(U.absolute_scope_name("target_p_func"))
         update_target_p = make_update_exp(p_func_vars, target_p_func_vars)
 
-        target_act_sample = act_pdtype_n[p_index].pdfromflat(target_p).sample()
-        target_act = U.function(inputs=[obs_ph_n[p_index]], outputs=target_act_sample)
+        target_act_sample = act_pdtype_n[0].pdfromflat(target_p).sample()
+        target_act = U.function(inputs=[obs_ph_n[0]], outputs=target_act_sample)
 
         return act, train, update_target_p, {'p_values': p_values, 'target_act': target_act}
 
@@ -84,7 +84,7 @@ def q_train(make_obs_ph_n, act_space_n, q_index, q_func, optimizer, grad_norm_cl
 
         q_input = tf.concat(obs_ph_n + act_ph_n, 1)
         if local_q_func:
-            q_input = tf.concat([obs_ph_n[q_index], act_ph_n[q_index]], 1)
+            q_input = tf.concat([obs_ph_n[0], act_ph_n[0]], 1)
         q = q_func(q_input, 1, scope="q_func", num_units=num_units)[:,0]
         q_func_vars = U.scope_vars(U.absolute_scope_name("q_func"))
 

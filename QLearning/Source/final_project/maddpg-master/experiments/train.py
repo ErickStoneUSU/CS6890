@@ -80,7 +80,9 @@ def get_trainers(env, num_adversaries, obs_shape_n, arglist):
             local_q_func=(arglist.adv_policy == 'ddpg')))
     for i in range(num_adversaries, env.n):
         trainers.append(trainer(
-            "agent_%d" % i, model, obs_shape_n, env.action_space, i, arglist,
+            "agent_%d" % i, model,
+            [obs_shape_n[i] for j in range(global_env.k + 1)],
+            [env.action_space[j] for j in range(global_env.k + 1)], i, arglist,
             local_q_func=(arglist.good_policy == 'ddpg')))
     return trainers
 
@@ -166,6 +168,7 @@ def train(arglist):
             if arglist.display:
                 time.sleep(0.1)
                 env.render()
+                continue
 
             # update all trainers, if not in display or benchmark mode
             loss = None
