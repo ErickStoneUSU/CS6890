@@ -175,7 +175,7 @@ def train(arglist):
             for agent in trainers:
                 agent.preupdate()
             for agent in trainers:
-                loss = agent.update(trainers, train_step)
+                loss = agent.update(trainers, train_step, global_env.knn)
 
             # save model, display training output
             if terminal and (len(episode_rewards) % arglist.save_rate == 0):
