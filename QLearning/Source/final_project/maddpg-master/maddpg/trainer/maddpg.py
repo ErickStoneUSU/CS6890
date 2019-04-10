@@ -123,7 +123,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         self.agent_index = agent_index
         self.args = args
         obs_ph_n = []
-        for i in range(GLOBALS.k):
+        for i in range(GLOBALS.k + 1):  # +1 to include self
             obs_ph_n.append(U.BatchInput(obs_shape_n[i], name="observation" + str(i)).get())
 
         # Create all the functions necessary to train the model
@@ -190,7 +190,9 @@ class MADDPGAgentTrainer(AgentTrainer):
         # train q network
         target_q = 0.0
         func = self.q_debug['target_q_values']
-        target_act_next_n = [agents[i].p_debug['target_act'](obs_next_n[i]) for i in range(GLOBALS.k)]
+        target_act_next_n = []
+        for j, i in enumerate(knn[self.agent_index]):
+            target_act_next_n.append(agents[i].p_debug['target_act'](obs_next_n[j]))
         target_q_next = func(*(obs_next_n + target_act_next_n))
         target_q += rew + self.args.gamma * (1.0 - done) * target_q_next
         q_loss = self.q_train(*(obs_n + act_n + [target_q]))
