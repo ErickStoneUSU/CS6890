@@ -1,7 +1,7 @@
 import numpy as np
-from multiagent.core import World, Agent, Landmark
-from multiagent.scenario import BaseScenario
-from experiments.GLOBALS import global_env
+from multiagent_particle_envs_master.multiagent.core import World, Agent, Landmark
+from multiagent_particle_envs_master.multiagent.scenario import BaseScenario
+from maddpg_master.experiments.GLOBALS import global_env
 
 
 class Scenario(BaseScenario):

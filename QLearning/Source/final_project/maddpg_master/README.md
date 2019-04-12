@@ -89,13 +89,13 @@ has been provided), but does not continue training (default: `False`)
 
 - `./experiments/train.py`: contains code for training MADDPG on the MPE
 
-- `./maddpg/trainer/maddpg.py`: core code for the MADDPG algorithm
+- `./maddpg/trainer/maddpg_master.maddpg.py`: core code for the MADDPG algorithm
 
 - `./maddpg/trainer/replay_buffer.py`: replay buffer code for MADDPG
 
-- `./maddpg/common/distributions.py`: useful distributions used in `maddpg.py`
+- `./maddpg/common/distributions.py`: useful distributions used in `maddpg_master.maddpg.py`
 
-- `./maddpg/common/tf_util.py`: useful tensorflow functions used in `maddpg.py`
+- `./maddpg/common/tf_util.py`: useful tensorflow functions used in `maddpg_master.maddpg.py`
 
 
 

@@ -4,10 +4,10 @@ import tensorflow as tf
 import time
 import pickle
 
-import maddpg.common.tf_util as U
-from maddpg.trainer.maddpg import MADDPGAgentTrainer
+import maddpg_master.maddpg.common.tf_util as U
+from maddpg_master.maddpg.trainer.maddpg import MADDPGAgentTrainer
 import tensorflow.contrib.layers as layers
-from experiments.GLOBALS import global_env
+from maddpg_master.experiments.GLOBALS import global_env
 
 
 def parse_args():
@@ -55,8 +55,8 @@ def mlp_model(input, num_outputs, scope, reuse=False, num_units=64, rnn_cell=Non
 
 
 def make_env(scenario_name, arglist, benchmark=False):
-    from multiagent.environment import MultiAgentEnv
-    import multiagent.scenarios as scenarios
+    from multiagent_particle_envs_master.multiagent.environment import MultiAgentEnv
+    import multiagent_particle_envs_master.multiagent.scenarios as scenarios
 
     # load scenario from script
     scenario = scenarios.load(scenario_name + ".py").Scenario()

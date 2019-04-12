@@ -2,8 +2,8 @@ import gym
 from gym import spaces
 from gym.envs.registration import EnvSpec
 import numpy as np
-from multiagent.multi_discrete import MultiDiscrete
-from experiments.GLOBALS import global_env
+from multiagent_particle_envs_master.multiagent.multi_discrete import MultiDiscrete
+from maddpg_master.experiments.GLOBALS import global_env
 
 
 # environment for all agents in the multiagent world

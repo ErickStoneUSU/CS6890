@@ -2,9 +2,9 @@
 import os
 import sys
 import argparse
-from multiagent.environment import MultiAgentEnv
-from multiagent.policy import InteractivePolicy
-import multiagent.scenarios as scenarios
+from multiagent_particle_envs_master.multiagent.environment import MultiAgentEnv
+from multiagent_particle_envs_master.multiagent.policy import InteractivePolicy
+import multiagent_particle_envs_master.multiagent.scenarios as scenarios
 
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
