@@ -23,3 +23,5 @@ ShiftControllerIntSpec.groovy
 *.png
 
 *.p
+
+QLearning/Source/final_project/multiagent-particle-envs-master/multiagent\.egg-info/
