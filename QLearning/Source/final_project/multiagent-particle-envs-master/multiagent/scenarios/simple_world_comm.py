@@ -244,7 +244,12 @@ class Scenario(BaseScenario):
                 break
 
         if not agent.adversary:
-            comm = [np.array([0.0, 0.0, 0.0, 0.0])]
+            np.concatenate([agent.state.p_vel] +
+                           [agent.state.p_pos] +
+                           other_pos +
+                           other_vel +
+                           other_type +
+                           in_forest)
         return np.concatenate([agent.state.p_vel] +
                               [agent.state.p_pos] +
                               other_pos +

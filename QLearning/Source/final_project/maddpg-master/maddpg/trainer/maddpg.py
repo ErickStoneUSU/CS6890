@@ -45,7 +45,6 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
 
         # wrap parameters in distribution
         act_pd = act_pdtype_n[0].pdfromflat(p)
-
         act_sample = act_pd.sample()
         p_reg = tf.reduce_mean(tf.square(act_pd.flatparam()))
 
@@ -73,6 +72,12 @@ def p_train(make_obs_ph_n, act_space_n, p_index, p_func, q_func, optimizer, grad
 
         target_act_sample = act_pdtype_n[0].pdfromflat(target_p).sample()
         target_act = U.function(inputs=[obs_ph_n[0]], outputs=target_act_sample)
+
+        print('Individual Trainer PTrain')
+        print('obs_ph_n, act_ph_n, target_act_sample')
+        print(obs_ph_n)
+        print(act_ph_n)
+        print(target_act_sample)
 
         return act, train, update_target_p, {'p_values': p_values, 'target_act': target_act}
 
@@ -112,6 +117,11 @@ def q_train(make_obs_ph_n, act_space_n, q_index, q_func, optimizer, grad_norm_cl
         update_target_q = make_update_exp(q_func_vars, target_q_func_vars)
 
         target_q_values = U.function(obs_ph_n + act_ph_n, target_q)
+        print('Individual Trainer QTrain')
+        print('obs_ph_n, act_ph_n, target_q')
+        print(obs_ph_n)
+        print(act_ph_n)
+        print(target_q)
 
         return train, update_target_q, {'q_values': q_values, 'target_q_values': target_q_values}
 
@@ -122,14 +132,15 @@ class MADDPGAgentTrainer(AgentTrainer):
         self.n = len(obs_shape_n)
         self.agent_index = agent_index
         self.args = args
-        obs_ph_n = []
+        self.obs_ph_n = []
+        self.act_space_n = act_space_n
         for i in range(GLOBALS.k + 1):  # +1 to include self
-            obs_ph_n.append(U.BatchInput(obs_shape_n[i], name="observation" + str(i)).get())
+            self.obs_ph_n.append(U.BatchInput(obs_shape_n[i], name="observation" + str(i)).get())
 
         # Create all the functions necessary to train the model
         self.q_train, self.q_update, self.q_debug = q_train(
             scope=self.name,
-            make_obs_ph_n=obs_ph_n,
+            make_obs_ph_n=self.obs_ph_n,
             act_space_n=act_space_n,
             q_index=agent_index,
             q_func=model,
@@ -140,7 +151,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         )
         self.act, self.p_train, self.p_update, self.p_debug = p_train(
             scope=self.name,
-            make_obs_ph_n=obs_ph_n,
+            make_obs_ph_n=self.obs_ph_n,
             act_space_n=act_space_n,
             p_index=agent_index,
             p_func=model,
@@ -166,6 +177,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         self.replay_sample_index = None
 
     def update(self, agents, t, knn):
+        agents = [agents[i] for i in knn[self.agent_index]]  # only use agents that can be seen
         if len(self.replay_buffer) < self.max_replay_buffer_len:  # replay buffer is not large enough
             return
         if not t % 100 == 0:  # only update every 100 steps
@@ -179,20 +191,20 @@ class MADDPGAgentTrainer(AgentTrainer):
         index = self.replay_sample_index
 
         num = 0
-        for i in range(self.n):
+        for agent in agents:
             num += 1
-            obs, act, rew, obs_next, done = agents[i].replay_buffer.sample_index(index)
+            obs, act, rew, obs_next, done = agent.replay_buffer.sample_index(index)
             obs_n.append(obs)
             obs_next_n.append(obs_next)
             act_n.append(act)
         obs, act, rew, obs_next, done = self.replay_buffer.sample_index(index)
-
+        obs_next_n = [obs] + obs_next_n
         # train q network
         target_q = 0.0
-        target_act_next_n = []
-        for j, i in enumerate(knn[self.agent_index]):
-            target_act_next_n.append(agents[i].p_debug['target_act'](obs_next_n[j]))
-        target_q_next = self.q_debug['target_q_values'](*(obs_next_n + target_act_next_n))
+        target_act_next_n = [act]
+        for j, agent in enumerate(agents):
+            target_act_next_n.append(agent.p_debug['target_act'](obs_next_n[j]))
+        target_q_next = self.q_debug['target_q_values'](*(obs_next_n + [target_act_next_n]))
         target_q += rew + self.args.gamma * (1.0 - done) * target_q_next
         target_q /= 1  # flips the matrix around
         q_loss = self.q_train(*(obs_n + act_n + [target_q]))

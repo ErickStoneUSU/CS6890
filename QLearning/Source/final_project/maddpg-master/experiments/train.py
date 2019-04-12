@@ -81,8 +81,8 @@ def get_trainers(env, num_adversaries, obs_shape_n, arglist):
     for i in range(num_adversaries, env.n):
         trainers.append(trainer(
             "agent_%d" % i, model,
-            [obs_shape_n[i] for j in range(global_env.k + 1)],
-            [env.action_space[j] for j in range(global_env.k + 1)], i, arglist,
+            obs_shape_n,
+            [env.action_space[0] if i == 0 else env.action_space[1]], i, arglist,
             local_q_func=(arglist.good_policy == 'ddpg')))
     return trainers
 
@@ -92,7 +92,7 @@ def train(arglist):
         # Create environment
         env = make_env(arglist.scenario, arglist, arglist.benchmark)
         # Create agent trainers
-        obs_shape_n = [env.observation_space[i].shape for i in range(env.n)]
+        obs_shape_n = [env.observation_space[i].shape for i in range(global_env.k + 1)]
         num_adversaries = min(env.n, arglist.num_adversaries)
         trainers = get_trainers(env, num_adversaries, obs_shape_n, arglist)
         print('Using good policy {} and adv policy {}'.format(arglist.good_policy, arglist.adv_policy))

@@ -34,8 +34,10 @@ class GLOBALS:
 
         # 3. add connections to agents if the number of connections is < k
         for c in dist:
-            self.knn[c[0]].append(c[1])
-            self.knn[c[1]].append(c[0])
+            if len(self.knn[c[0]]) < self.k:
+                self.knn[c[0]].append(c[1])
+            if len(self.knn[c[1]]) < self.k:
+                self.knn[c[1]].append(c[0])
 
 
 global_env = GLOBALS()
