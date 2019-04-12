@@ -7,6 +7,10 @@
       <sourceFolder url="file://$MODULE_DIR$/Source/final_project" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Source/final_project/multiagent-particle-envs-master" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Source/final_project/maddpg-master" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Source/final_project/maddpg_master/experiments" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Source/final_project/maddpg_master/maddpg" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Source/final_project/multiagent_particle_envs_master/bin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Source/final_project/multiagent_particle_envs_master/multiagent" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
