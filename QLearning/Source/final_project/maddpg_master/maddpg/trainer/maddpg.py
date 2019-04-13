@@ -1,12 +1,14 @@
 import numpy as np
 import random
 import tensorflow as tf
-import maddpg_master.maddpg.common.tf_util as U
 
 from maddpg_master.maddpg.common.distributions import make_pdtype
 from maddpg_master.maddpg import AgentTrainer
 from maddpg_master.maddpg.trainer.replay_buffer import ReplayBuffer
-from maddpg_master.experiments.GLOBALS import GLOBALS
+
+from Runner import final_project
+U = final_project.U
+global_env = final_project.g_env
 
 
 def discount_with_dones(rewards, dones, gamma):
@@ -134,7 +136,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         self.args = args
         self.obs_ph_n = []
         self.act_space_n = act_space_n
-        for i in range(GLOBALS.k + 1):  # +1 to include self
+        for i in range(global_env.k + 1):  # +1 to include self
             self.obs_ph_n.append(U.BatchInput(obs_shape_n[i], name="observation" + str(i)).get())
 
         # Create all the functions necessary to train the model

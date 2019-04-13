@@ -1,9 +1,7 @@
 import gym
-from gym import spaces
-from gym.envs.registration import EnvSpec
 import numpy as np
+from gym import spaces
 from multiagent_particle_envs_master.multiagent.multi_discrete import MultiDiscrete
-from maddpg_master.experiments.GLOBALS import global_env
 
 
 # environment for all agents in the multiagent world
@@ -250,7 +248,6 @@ class MultiAgentEnv(gym.Env):
 
         results = []
         for i in range(len(self.viewers)):
-            from multiagent import rendering
             # update bounds to center around agent
             cam_range = 1
             if self.shared_viewer:

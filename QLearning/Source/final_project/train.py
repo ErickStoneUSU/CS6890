@@ -1,15 +1,18 @@
 import argparse
 import numpy as np
 import tensorflow as tf
+import tensorflow.contrib.layers as layers
 import time
 import pickle
 
-import maddpg.common.tf_util as U
-from maddpg.trainer.maddpg import MADDPGAgentTrainer
-import tensorflow.contrib.layers as layers
-from experiments.GLOBALS import global_env
-from multiagent_particle_envs_master.multiagent.environment import MultiAgentEnv
-import multiagent_particle_envs_master.multiagent.scenarios as scenarios
+from Runner import final_project
+
+scenarios = final_project.scenarios
+global_env = final_project.g_env
+MultiAgentEnv = final_project.MultiAgentEnv
+MADDPGAgentTrainer = final_project.MADDPGAgentTrainer
+U = final_project.U
+
 
 def parse_args():
     parser = argparse.ArgumentParser("Reinforcement Learning experiments for multiagent environments")
@@ -216,8 +219,3 @@ def train(arglist):
                     pickle.dump(final_ep_ag_rewards, fp)
                 print('...Finished total of {} episodes.'.format(len(episode_rewards)))
                 break
-
-
-if __name__ == '__main__':
-    arglist = parse_args()
-    train(arglist)
