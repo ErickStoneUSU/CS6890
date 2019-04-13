@@ -4,11 +4,12 @@ import tensorflow as tf
 import time
 import pickle
 
-import maddpg_master.maddpg.common.tf_util as U
-from maddpg_master.maddpg.trainer.maddpg import MADDPGAgentTrainer
+import maddpg.common.tf_util as U
+from maddpg.trainer.maddpg import MADDPGAgentTrainer
 import tensorflow.contrib.layers as layers
-from maddpg_master.experiments.GLOBALS import global_env
-
+from experiments.GLOBALS import global_env
+from multiagent_particle_envs_master.multiagent.environment import MultiAgentEnv
+import multiagent_particle_envs_master.multiagent.scenarios as scenarios
 
 def parse_args():
     parser = argparse.ArgumentParser("Reinforcement Learning experiments for multiagent environments")
@@ -55,9 +56,6 @@ def mlp_model(input, num_outputs, scope, reuse=False, num_units=64, rnn_cell=Non
 
 
 def make_env(scenario_name, arglist, benchmark=False):
-    from multiagent_particle_envs_master.multiagent.environment import MultiAgentEnv
-    import multiagent_particle_envs_master.multiagent.scenarios as scenarios
-
     # load scenario from script
     scenario = scenarios.load(scenario_name + ".py").Scenario()
     # create world

@@ -204,7 +204,7 @@ class MADDPGAgentTrainer(AgentTrainer):
         target_act_next_n = [act]
         for j, agent in enumerate(agents):
             target_act_next_n.append(agent.p_debug['target_act'](obs_next_n[j]))
-        target_q_next = self.q_debug['target_q_values'](*(obs_next_n + [target_act_next_n]))
+        target_q_next = self.q_debug['target_q_values'](*(obs_next_n + target_act_next_n))
         target_q += rew + self.args.gamma * (1.0 - done) * target_q_next
         target_q /= 1  # flips the matrix around
         q_loss = self.q_train(*(obs_n + act_n + [target_q]))
