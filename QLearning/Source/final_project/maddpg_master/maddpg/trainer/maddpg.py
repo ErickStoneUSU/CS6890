@@ -201,18 +201,22 @@ class MADDPGAgentTrainer(AgentTrainer):
             act_n.append(act)
         obs, act, rew, obs_next, done = self.replay_buffer.sample_index(index)
         obs_next_n = [obs] + obs_next_n
+        obs_n = [obs] + obs_n
+        act_n = [act] + act_n
+
         # train q network
         target_q = 0.0
         target_act_next_n = [act]
         for j, agent in enumerate(agents):
             target_act_next_n.append(agent.p_debug['target_act'](obs_next_n[j]))
-        target_q_next = self.q_debug['target_q_values'](*(obs_next_n + target_act_next_n))
+        target_q_next = self.q_debug['target_q_values'](*(obs_next_n + [target_act_next_n[0]]))
         target_q += rew + self.args.gamma * (1.0 - done) * target_q_next
         target_q /= 1  # flips the matrix around
-        q_loss = self.q_train(*(obs_n + act_n + [target_q]))
+        #  todo this needs to match size and shape
+        q_loss = self.q_train(*(obs_n + [act] + [target_q]))
 
         # train p network
-        p_loss = self.p_train(*(obs_n + act_n))
+        p_loss = self.p_train(*(obs_n + [act]))
 
         self.p_update()
         self.q_update()
