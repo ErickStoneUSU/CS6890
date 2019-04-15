@@ -218,15 +218,15 @@ class MultiAgentEnv(gym.Env):
             # create viewers (if necessary)
             if self.viewers[i] is None:
                 # import rendering only if we need it (and don't import for headless machines)
+                from multiagent_particle_envs_master.multiagent import rendering
                 # from gym.envs.classic_control import rendering
-                from multiagent import rendering
                 self.viewers[i] = rendering.Viewer(700, 700)
 
         # create rendering geometry
         if self.render_geoms is None:
             # import rendering only if we need it (and don't import for headless machines)
             # from gym.envs.classic_control import rendering
-            from multiagent import rendering
+            from multiagent_particle_envs_master.multiagent import rendering
             self.render_geoms = []
             self.render_geoms_xform = []
             for entity in self.world.entities:
