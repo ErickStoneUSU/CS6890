@@ -11,9 +11,10 @@ def get_dist(left, right):
 
 
 class GLOBALS:
-    predator = 6
-    prey = 3
+    predator = 2
+    prey = 1
     k = 2
+    food = 2
     states = []
     knn = defaultdict(list)
     agents = []
