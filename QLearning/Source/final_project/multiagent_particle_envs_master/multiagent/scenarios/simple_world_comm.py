@@ -164,17 +164,16 @@ class Scenario(BaseScenario):
         for a in agents:
             if world.agents[a].adversary:
                 if self.is_collision(world.agents[a], agent):
-                    rew -= 5
+                    rew -= 1
 
         # Agents are rewarded for collision with food
         for food in world.food:
             if self.is_collision(agent, food):
-                rew += 10
-            else:
-                rew -= 1
+                rew += 10000000
 
         # Agents are heavily penalized for getting distance from the closest food
-        rew -= min([np.sum(np.square(food.state.p_pos - agent.state.p_pos)) for food in world.food])**2
+        # todo train with absolute
+        rew -= min([np.sum(np.abs(food.state.p_pos - agent.state.p_pos)) for food in world.food])**4
 
         return rew
 
