@@ -11,8 +11,8 @@ def get_dist(left, right):
 
 
 class GLOBALS:
-    predator = 4
-    prey = 6
+    predator = 3
+    prey = 3
     k = 3
     food = 4
     states = []

@@ -1,3 +1,4 @@
+import math
 import numpy as np
 from multiagent_particle_envs_master.multiagent.core import World, Agent, Landmark
 from multiagent_particle_envs_master.multiagent.scenario import BaseScenario
@@ -125,8 +126,8 @@ class Scenario(BaseScenario):
 
     def is_collision(self, agent1, agent2):
         delta_pos = agent1.state.p_pos - agent2.state.p_pos
-        dist = np.sqrt(np.sum(np.square(delta_pos)))
-        dist_min = agent1.size + agent2.size
+        dist = np.sqrt(np.sum(np.square(delta_pos))) / 2
+        dist_min = (agent1.size + agent2.size)
         return True if dist < dist_min else False
 
     # return all agents that are not adversaries
@@ -140,7 +141,7 @@ class Scenario(BaseScenario):
     def reward(self, agent, world):
         # Agents are rewarded based on minimum agent distance to each landmark
         if self.outside_boundary(agent):
-            return -200
+            return -20
 
         if agent.adversary:
             return self.adversary_reward(agent, world)
@@ -148,10 +149,10 @@ class Scenario(BaseScenario):
             return self.agent_reward(agent, world)
 
     def outside_boundary(self, agent):
-        if agent.state.p_pos[0] > 1 or \
-                agent.state.p_pos[0] < -1 or \
-                agent.state.p_pos[1] > 1 or \
-                agent.state.p_pos[1] < -1:
+        if agent.state.p_pos[0] > 2 or \
+                agent.state.p_pos[0] < -2 or \
+                agent.state.p_pos[1] > 2 or \
+                agent.state.p_pos[1] < -2:
             return True
         else:
             return False
@@ -164,16 +165,19 @@ class Scenario(BaseScenario):
         for a in agents:
             if world.agents[a].adversary:
                 if self.is_collision(world.agents[a], agent):
-                    rew -= 1
+                    rew -= 10
 
         # Agents are rewarded for collision with food
+        collided = False
         for food in world.food:
             if self.is_collision(agent, food):
-                rew += 100
+                rew += 200
+                collided = True
 
         # Agents are heavily penalized for getting distance from the closest food
         # todo train with absolute
-        rew -= min([np.sum(np.abs(food.state.p_pos - agent.state.p_pos)) for food in world.food])*5
+        if not collided:
+            rew -= min([math.hypot(agent.state.p_pos[0] - food.state.p_pos[0], agent.state.p_pos[1] - food.state.p_pos[1]) for food in world.food]) * 5
 
         return rew
 
@@ -249,7 +253,8 @@ class Scenario(BaseScenario):
                            other_vel +
                            other_type +
                            in_forest +
-                           food_pos)
+                           food_pos +
+                           comm)
         return np.concatenate([agent.state.p_vel] +
                               [agent.state.p_pos] +
                               other_pos +
