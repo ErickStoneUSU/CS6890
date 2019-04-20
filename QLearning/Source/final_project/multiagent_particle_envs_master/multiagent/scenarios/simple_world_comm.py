@@ -104,6 +104,7 @@ class Scenario(BaseScenario):
             agent.state.p_pos = np.random.uniform(-1, +1, world.dim_p)
             agent.state.p_vel = np.zeros(world.dim_p)
             agent.state.c = np.zeros(world.dim_c)
+            agent.state.hunger = 5
         for i, landmark in enumerate(world.landmarks):
             landmark.state.p_pos = np.random.uniform(-0.9, +0.9, world.dim_p)
             landmark.state.p_vel = np.zeros(world.dim_p)
@@ -126,8 +127,8 @@ class Scenario(BaseScenario):
 
     def is_collision(self, agent1, agent2):
         delta_pos = agent1.state.p_pos - agent2.state.p_pos
-        dist = np.sqrt(np.sum(np.square(delta_pos))) / 2
-        dist_min = (agent1.size + agent2.size)
+        dist = np.sqrt(np.sum(np.square(delta_pos)))
+        dist_min = (agent1.size + agent2.size) / 2
         return True if dist < dist_min else False
 
     # return all agents that are not adversaries
@@ -138,7 +139,7 @@ class Scenario(BaseScenario):
     def adversaries(self, world):
         return [agent for agent in world.agents if agent.adversary]
 
-    def reward(self, agent, world):
+    def reward(self, agent, world, episode_step):
         # Agents are rewarded based on minimum agent distance to each landmark
         if self.outside_boundary(agent):
             return -20
@@ -146,7 +147,7 @@ class Scenario(BaseScenario):
         if agent.adversary:
             return self.adversary_reward(agent, world)
         else:
-            return self.agent_reward(agent, world)
+            return self.agent_reward(agent, world, episode_step)
 
     def outside_boundary(self, agent):
         if agent.state.p_pos[0] > 2 or \
@@ -157,27 +158,31 @@ class Scenario(BaseScenario):
         else:
             return False
 
-    def agent_reward(self, agent, world):
+    def agent_reward(self, agent, world, episode_step):
         rew = 0
         agents = global_env.knn[agent.id]
 
+        # todo add hunger
         # Agents do not like colliding with predators
         for a in agents:
             if world.agents[a].adversary:
                 if self.is_collision(world.agents[a], agent):
                     rew -= 10
+                    agent.state.hunger += 1
 
         # Agents are rewarded for collision with food
         collided = False
         for food in world.food:
             if self.is_collision(agent, food):
-                rew += 200
+                rew += 200 * agent.state.hunger
                 collided = True
+                agent.state.hunger -= 1
+
 
         # Agents are heavily penalized for getting distance from the closest food
         # todo train with absolute
         if not collided:
-            rew -= min([math.hypot(agent.state.p_pos[0] - food.state.p_pos[0], agent.state.p_pos[1] - food.state.p_pos[1]) for food in world.food]) * 5
+            rew -= min([math.hypot(agent.state.p_pos[0] - food.state.p_pos[0], agent.state.p_pos[1] - food.state.p_pos[1]) for food in world.food]) * 5 * agent.state.hunger
 
         return rew
 
@@ -191,11 +196,12 @@ class Scenario(BaseScenario):
             if not world.agents[a].adversary:
                 prey.append(world.agents[a])
                 if self.is_collision(world.agents[a], agent):
-                    rew += 10
+                    rew += 10 * agent.state.hunger
+                    agent.state.hunger -= 1
 
         # Agents are penalized for distance from closest prey.
         if prey:
-            rew -= min([np.sum(np.square(p.state.p_pos - agent.state.p_pos)) for p in prey])*5
+            rew -= min([np.sum(np.square(p.state.p_pos - agent.state.p_pos)) for p in prey])*5 * agent.state.hunger
         return rew
 
     def observation(self, agent, world):
@@ -252,13 +258,13 @@ class Scenario(BaseScenario):
                            other_pos +
                            other_vel +
                            other_type +
-                           in_forest +
                            food_pos +
+                           [np.array([agent.state.hunger])] +
                            comm)
         return np.concatenate([agent.state.p_vel] +
                               [agent.state.p_pos] +
                               other_pos +
                               other_vel +
                               other_type +
-                              in_forest +
+                              [np.array([agent.state.hunger])] +
                               comm)

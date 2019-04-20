@@ -8,6 +8,7 @@ class EntityState(object):
         self.p_pos = None
         # physical velocity
         self.p_vel = None
+        self.hunger = 10.0
 
 
 # state of agents (including communication and internal/mental state)

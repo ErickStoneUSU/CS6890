@@ -117,6 +117,7 @@ def train(arglist):
         saver = tf.train.Saver()
         obs_n = env.reset()
         episode_step = 0
+
         train_step = 0
         t_start = time.time()
 
@@ -125,7 +126,7 @@ def train(arglist):
             # get action
             action_n = [agent.action(obs) for agent, obs in zip(trainers, obs_n)]
             # environment step
-            new_obs_n, rew_n, done_n, info_n = env.step(action_n)
+            new_obs_n, rew_n, done_n, info_n = env.step(action_n, episode_step)
             episode_step += 1
             done = all(done_n)
             terminal = (episode_step >= arglist.max_episode_len)
