@@ -1,3 +1,4 @@
+import math
 import numpy as np
 from multiagent_particle_envs_master.multiagent.core import World, Agent, Landmark
 from multiagent_particle_envs_master.multiagent.scenario import BaseScenario
@@ -103,6 +104,7 @@ class Scenario(BaseScenario):
             agent.state.p_pos = np.random.uniform(-1, +1, world.dim_p)
             agent.state.p_vel = np.zeros(world.dim_p)
             agent.state.c = np.zeros(world.dim_c)
+            agent.state.hunger = 5
         for i, landmark in enumerate(world.landmarks):
             landmark.state.p_pos = np.random.uniform(-0.9, +0.9, world.dim_p)
             landmark.state.p_vel = np.zeros(world.dim_p)
@@ -126,7 +128,7 @@ class Scenario(BaseScenario):
     def is_collision(self, agent1, agent2):
         delta_pos = agent1.state.p_pos - agent2.state.p_pos
         dist = np.sqrt(np.sum(np.square(delta_pos)))
-        dist_min = agent1.size + agent2.size
+        dist_min = (agent1.size + agent2.size) / 2
         return True if dist < dist_min else False
 
     # return all agents that are not adversaries
@@ -137,7 +139,7 @@ class Scenario(BaseScenario):
     def adversaries(self, world):
         return [agent for agent in world.agents if agent.adversary]
 
-    def reward(self, agent, world):
+    def reward(self, agent, world, episode_step):
         # Agents are rewarded based on minimum agent distance to each landmark
         # if self.outside_boundary(agent):
         #     return -200
@@ -145,13 +147,13 @@ class Scenario(BaseScenario):
         if agent.adversary:
             return self.adversary_reward(agent, world)
         else:
-            return self.agent_reward(agent, world)
+            return self.agent_reward(agent, world, episode_step)
 
     def outside_boundary(self, agent):
-        if agent.state.p_pos[0] > 1 or \
-                agent.state.p_pos[0] < -1 or \
-                agent.state.p_pos[1] > 1 or \
-                agent.state.p_pos[1] < -1:
+        if agent.state.p_pos[0] > 2 or \
+                agent.state.p_pos[0] < -2 or \
+                agent.state.p_pos[1] > 2 or \
+                agent.state.p_pos[1] < -2:
             return True
         else:
             return False
@@ -255,12 +257,13 @@ class Scenario(BaseScenario):
                            other_pos +
                            other_vel +
                            other_type +
-                           in_forest +
-                           food_pos)
+                           food_pos +
+                           [np.array([agent.state.hunger])] +
+                           comm)
         return np.concatenate([agent.state.p_vel] +
                               [agent.state.p_pos] +
                               other_pos +
                               other_vel +
                               other_type +
-                              in_forest +
+                              [np.array([agent.state.hunger])] +
                               comm)
