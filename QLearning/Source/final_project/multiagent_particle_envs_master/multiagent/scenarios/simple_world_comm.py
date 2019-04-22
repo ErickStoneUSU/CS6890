@@ -139,8 +139,8 @@ class Scenario(BaseScenario):
 
     def reward(self, agent, world):
         # Agents are rewarded based on minimum agent distance to each landmark
-        if self.outside_boundary(agent):
-            return -200
+        # if self.outside_boundary(agent):
+        #     return -200
 
         if agent.adversary:
             return self.adversary_reward(agent, world)
@@ -157,41 +157,48 @@ class Scenario(BaseScenario):
             return False
 
     def agent_reward(self, agent, world):
+        # Agents are rewarded based on minimum agent distance to each landmark
         rew = 0
-        agents = global_env.knn[agent.id]
+        shape = False
+        adversaries = self.adversaries(world)
+        if shape:
+            for adv in adversaries:
+                rew += 0.1 * np.sqrt(np.sum(np.square(agent.state.p_pos - adv.state.p_pos)))
+        if agent.collide:
+            for a in adversaries:
+                if self.is_collision(a, agent):
+                    rew -= 5
+        def bound(x):
+            if x < 0.9:
+                return 0
+            if x < 1.0:
+                return (x - 0.9) * 10
+            return min(np.exp(2 * x - 2), 10)  # 1 + (x - 1) * (x - 1)
 
-        # Agents do not like colliding with predators
-        for a in agents:
-            if world.agents[a].adversary:
-                if self.is_collision(world.agents[a], agent):
-                    rew -= 1
+        for p in range(world.dim_p):
+            x = abs(agent.state.p_pos[p])
+            rew -= 2 * bound(x)
 
-        # Agents are rewarded for collision with food
         for food in world.food:
             if self.is_collision(agent, food):
-                rew += 100
-
-        # Agents are heavily penalized for getting distance from the closest food
-        # todo train with absolute
-        rew -= min([np.sum(np.abs(food.state.p_pos - agent.state.p_pos)) for food in world.food])*5
+                rew += 2
+        rew += 0.05 * min([np.sqrt(np.sum(np.square(food.state.p_pos - agent.state.p_pos))) for food in world.food])
 
         return rew
 
     def adversary_reward(self, agent, world):
+        # Agents are rewarded based on minimum agent distance to each landmark
         rew = 0
-        agents = global_env.knn[agent.id]
-
-        # Agents are rewarded a ton for collision with prey.
-        prey = []
-        for a in agents:
-            if not world.agents[a].adversary:
-                prey.append(world.agents[a])
-                if self.is_collision(world.agents[a], agent):
-                    rew += 10
-
-        # Agents are penalized for distance from closest prey.
-        if prey:
-            rew -= min([np.sum(np.square(p.state.p_pos - agent.state.p_pos)) for p in prey])*5
+        shape = True
+        agents = self.good_agents(world)
+        adversaries = self.adversaries(world)
+        if shape:
+            rew -= 0.1 * min([np.sqrt(np.sum(np.square(a.state.p_pos - agent.state.p_pos))) for a in agents])
+        if agent.collide:
+            for ag in agents:
+                for adv in adversaries:
+                    if self.is_collision(ag, adv):
+                        rew += 5
         return rew
 
     def observation(self, agent, world):
