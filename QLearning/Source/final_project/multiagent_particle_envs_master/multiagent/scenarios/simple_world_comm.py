@@ -16,7 +16,7 @@ class Scenario(BaseScenario):
         num_agents = num_adversaries + num_good_agents
         num_landmarks = 1
         num_food = global_env.food
-        num_forests = 2
+        num_forests = 0
         # add agents
         world.agents = [Agent() for i in range(num_agents)]
         for i, agent in enumerate(world.agents):
@@ -210,7 +210,7 @@ class Scenario(BaseScenario):
         other_pos = []
         other_vel = []
         food_pos = []
-        in_forest = [np.array([-1]), np.array([-1])]
+        in_forest = []
         comm = [world.agents[0].state.c]
 
         # set up knn
@@ -223,11 +223,11 @@ class Scenario(BaseScenario):
             if not entity.boundary:
                 entity_pos.append(entity.state.p_pos - agent.state.p_pos)
 
-        if self.is_collision(agent, world.forests[0]):
-            in_forest[0] = np.array([1])
-
-        if self.is_collision(agent, world.forests[1]):
-            in_forest[1] = np.array([1])
+        for forest in world.forests:
+            if self.is_collision(agent, forest):
+                in_forest.append(np.array([1]))
+            else:
+                in_forest.append(np.array([-1]))
 
         # setup food distance and collisions
         for entity in world.food:
